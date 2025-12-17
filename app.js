@@ -1,14 +1,10 @@
-const url = 'https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=Seattle';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '7f0858be17msh9edb5ad6a749723p1c9428jsn629dedf5d649',
-		'x-rapidapi-host': 'weather-by-api-ninjas.p.rapidapi.com'
+ async function checkWeather(city){
+	const apiKey=;
+	const url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+	const weather_data= await fetch(url).then(response => response.json());
+	temperature.innerHTML=`${Math.round(weather_data.main.temp-273.75)}°C`
 	}
-};
 
-fetch(url, options),
-then(response => response.json())
-.then(response => console.log(response))
-.catch(err =>  console.error(err));	
-	
+	searchBtn.addEventListener('click',()=>{
+		checkWeather(cityInput.value);
+	}); 
